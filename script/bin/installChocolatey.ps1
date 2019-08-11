@@ -1,10 +1,10 @@
 # Check if Chocolatey is already installed
-$ChocoInstalled = $false
+$installed = $false
 if (Get-Command choco.exe -ErrorAction SilentlyContinue) {
-    $ChocoInstalled = $true
+    $installed = $true
 }
-if ($ChocoInstalled -eq $false) {
-    Write-Output "==> Installing Chocolatey..."
+if ($installed -eq $false) {
+    Write-Host "==> Installing Chocolatey..."
 
     # Download and save installation script
     $url = 'https://chocolatey.org/install.ps1'
@@ -25,6 +25,6 @@ if ($ChocoInstalled -eq $false) {
     # Tidy up
     Remove-Item -Path $outPath
 } else {
-    Write-Output "==> Updating Chocolatey..."
+    Write-Host "==> Updating Chocolatey..."
     choco upgrade chocolatey
 }
