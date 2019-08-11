@@ -11,5 +11,11 @@ This is early days and so not all scripts will be implemented until I have an ac
 
 ### [script/setup](script/setup.ps1)
 
-This is used to set up a project in an initial state.
+Used to set up a project in an initial state.
 This is typically run after an initial clone, or, to reset the project back to its initial state.
+
+### [script/update](script/update.ps1)
+
+Used to update the project after a fresh pull.
+This should include any database migrations or any other things required to get the
+state of the app into shape for the current version that is checked out.
