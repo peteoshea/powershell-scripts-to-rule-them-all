@@ -11,12 +11,22 @@ if ($LastExitCode) {
 }
 
 # Install required packages
+function Install-ChocolateyPackage {
+    param ([string]$Name)
+    Write-Host "===> Installing '$Name'"
+}
+
 $packagesFilePath = "$basePath\chocolatey-packages"
 if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
     Write-Host "==> Installing Chocolatey packages..."
     $packageList = Get-Content -Path "$packagesFilePath"
-    For ($index = 0; $index -lt $packageList.Count; $index++) {
-        $package = $packageList[$index];
-        Write-Host "===> Installing '$package'"
+    if ($packageList.Count -eq 1) {
+        # A single item is treated as a string not an array
+        Install-ChocolateyPackage -Name $packageList
+    } else {
+        For ($index = 0; $index -lt $packageList.Count; $index++) {
+            $package = $packageList[$index];
+            Install-ChocolateyPackage -Name $package
+        }
     }
 }
