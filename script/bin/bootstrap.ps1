@@ -14,7 +14,7 @@ if ($LastExitCode) {
 function Install-ChocolateyPackage {
     param ([string]$Name)
     Write-Host "===> Installing '$Name'"
-    choco upgrade $Name
+    choco upgrade $Name --confirm
 }
 
 $packagesFilePath = "$basePath\chocolatey-packages"
