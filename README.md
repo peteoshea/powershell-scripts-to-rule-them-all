@@ -7,6 +7,14 @@ I don't feel that all of these scripts need to be called directly so I am moving
 
 This is early days and so not all scripts will be implemented until I have an actual need for them.
 
+## Required Packages
+
+The [bootstrap](powershell/bin/bootstrap.ps1) script allows for different package managers.
+
+### [Chocolatey](https://chocolatey.org/)
+
+If you have some [Chocolatey](https://chocolatey.org/) packages required then you can simply add a `chocolatey-packages` file at the top level of the project with a list of the packages and they will be installed and updated as required.
+
 ## The Scripts
 
 ### [powershell/setup](powershell/setup.ps1)

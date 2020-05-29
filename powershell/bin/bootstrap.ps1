@@ -14,7 +14,7 @@ function Install-ChocolateyPackage {
 $packagesFilePath = "$basePath\chocolatey-packages"
 if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
     # Ensure Chocolatey is setup
-    & "$binPath\InstallChocolatey.ps1"
+    & "$binPath\installChocolatey.ps1"
     if ($LastExitCode) {
         Write-Host "Install/upgrade of Chocolatey failed with exit code: $LastExitCode"
         Exit $LastExitCode
