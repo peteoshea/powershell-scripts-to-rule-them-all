@@ -33,3 +33,15 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
         }
     }
 }
+
+# Install any required winget packages
+$packagesFilePath = "$basePath\winget-packages"
+if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
+    Write-Host "==> Installing winget packages..."
+    $packageList = Get-Content -Path "$packagesFilePath"
+    For ($index = 0; $index -lt $packageList.Count; $index++) {
+        $package = $packageList[$index];
+        Write-Host "===> Installing '$package'"
+        winget install $package
+    }
+}
