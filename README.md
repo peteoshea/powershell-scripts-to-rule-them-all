@@ -15,6 +15,10 @@ The [bootstrap](powershell/bin/bootstrap.ps1) script allows for different packag
 
 If you have some [Chocolatey](https://chocolatey.org/) packages required then you can simply add a `chocolatey-packages` file at the top level of the project with a list of the packages and they will be installed and updated as required.
 
+### [winget](https://github.com/microsoft/winget-cli)
+
+Microsoft has recently released it's own package manager [winget](https://github.com/microsoft/winget-cli). This is currently only a preview so some functionality may not be available yet but it sounds promising so if you want to use this to install some packagesthen you can simply add a `winget-packages` file at the top level of the project with a list of the packages and they will be installed and updated as required.
+
 ## The Scripts
 
 ### [powershell/setup](powershell/setup.ps1)
