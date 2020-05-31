@@ -35,13 +35,24 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
 }
 
 # Install any required winget packages
+function Install-WinGetPackage {
+    param ([string]$Name)
+    Write-Host "===> Installing '$Name'"
+    winget install $Name
+}
+
 $packagesFilePath = "$basePath\winget-packages"
 if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
     Write-Host "==> Installing winget packages..."
     $packageList = Get-Content -Path "$packagesFilePath"
-    For ($index = 0; $index -lt $packageList.Count; $index++) {
-        $package = $packageList[$index];
-        Write-Host "===> Installing '$package'"
-        winget install $package
+    if ($packageList.Count -eq 1) {
+        # A single item is treated as a string not an array
+        Install-WinGetPackage -Name $packageList
+    }
+    else {
+        For ($index = 0; $index -lt $packageList.Count; $index++) {
+            $package = $packageList[$index];
+            Install-WinGetPackage -Name $package
+        }
     }
 }
