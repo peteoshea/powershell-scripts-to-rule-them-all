@@ -32,6 +32,7 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
             Install-ChocolateyPackage -Name $package
         }
     }
+    refreshenv
 }
 
 # Install any required winget packages
