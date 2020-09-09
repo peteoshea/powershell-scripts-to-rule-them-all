@@ -20,7 +20,7 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
         Exit $LastExitCode
     }
 
-    Write-Host "==> Installing Chocolatey packages..."
+    Write-Host "`n==> Installing Chocolatey packages..."
     $packageList = Get-Content -Path "$packagesFilePath"
     if ($packageList.Count -eq 1) {
         # A single item is treated as a string not an array
@@ -39,12 +39,12 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
 function Install-WinGetPackage {
     param ([string]$Name)
     Write-Host "===> Installing '$Name'"
-    winget install $Name
+    winget install $Name --exact
 }
 
 $packagesFilePath = "$basePath\winget-packages"
 if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
-    Write-Host "==> Installing winget packages..."
+    Write-Host "`n==> Installing winget packages..."
     $packageList = Get-Content -Path "$packagesFilePath"
     if ($packageList.Count -eq 1) {
         # A single item is treated as a string not an array
