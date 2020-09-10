@@ -23,6 +23,24 @@ Used to update the project after a fresh pull.
 This should include any database migrations or any other things required to get the state of the
 app into shape for the current version that is checked out.
 
+### [script/update][update]
+
+Used to update the project after a fresh pull.
+This should include any database migrations or any other things required to get the state of the
+app into shape for the current version that is checked out.
+
+### [script/test][test]
+
+Used to run the test suite of the project.
+To allow this script to be run from CI setup should be done outside of this script.
+A manual call to [update][update] before running the tests is usually a good idea.
+
+A good pattern to support is having optional arguments that allow you to run specific tests.
+
+Linting is also be considered a form of testing.
+These tend to run faster than tests, so put them towards the beginning so it fails faster if
+there's a linting problem.
+
 ## Installing Dependencies
 
 The [bootstrap][bootstrap] script, called from both [setup][setup] and [update][update] scripts,
