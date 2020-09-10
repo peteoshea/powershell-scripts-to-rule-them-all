@@ -1,8 +1,9 @@
+# Run bootstrap script to resolve dependencies
 $scriptPath = Split-Path -Path $PSCommandPath -Parent
 & "$scriptPath\bin\bootstrap.ps1"
 if ($LastExitCode) {
-    Write-Host "Bootstrap failed with exit code: $LastExitCode"
+    Write-Output "Bootstrap failed with exit code: $LastExitCode"
     Exit $LastExitCode
 }
 
-Write-Host "`n==> App is now ready to go!`n"
+Write-Output "`n==> App is now ready to go!`n"
