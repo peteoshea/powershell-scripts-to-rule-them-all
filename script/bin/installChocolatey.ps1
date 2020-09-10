@@ -1,3 +1,6 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='Recommended method from Chocolatey so supress this message for now')]
+param()
+
 # Check if Chocolatey is already installed
 $installed = $false
 if (Get-Command choco -ErrorAction SilentlyContinue) {
