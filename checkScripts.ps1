@@ -6,13 +6,13 @@ param(
 )
 
 if ($PSBoundParameters.ContainsKey('Test')) {
-    Write-Output "Run specific tests"
+    Write-Output "Lint specific scripts..."
     for ($index = 0; $index -lt $Test.Count; $index++)
     {
-       Write-Output "Test: $($Test[$index])"
-       Invoke-ScriptAnalyzer -Path "$($Test[$index])"
+       Write-Output "Analysing: $($Test[$index])"
+       Invoke-ScriptAnalyzer -Path "$($Test[$index])" -ReportSummary
     }
 } else {
-    Write-Output "Run all tests"
-    Invoke-ScriptAnalyzer -Path .\script -Recurse
+    Write-Output "Lint all scripts..."
+    Invoke-ScriptAnalyzer -Path .\script -Recurse -ReportSummary
 }
