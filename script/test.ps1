@@ -6,15 +6,14 @@ param(
 )
 
 $scriptPath = Split-Path -Path $PSCommandPath -Parent
-$basePath = Split-Path -Path $scriptPath -Parent
 
 Write-Output "`n==> Running tests..."
 Write-Output "Tests started at $(Get-Date)"
 
 if ($PSBoundParameters.ContainsKey('Test')) {
-    & "$basePath\checkScripts.ps1" $Test
+    & "$basePath\bin\checkScripts.ps1" $Test
 } else {
-    & "$basePath\checkScripts.ps1"
+    & "$basePath\bin\checkScripts.ps1"
 }
 if ($LastExitCode) {
     Write-Output "checkScripts failed with exit code: $LastExitCode"

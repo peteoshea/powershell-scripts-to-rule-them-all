@@ -1,5 +1,7 @@
 # PowerShell Scripts To Rule Them All
 
+[![CI](https://github.com/peteoshea/powershell-scripts-to-rule-them-all/workflows/CI/badge.svg)](https://github.com/peteoshea/powershell-scripts-to-rule-them-all/actions)
+
 PowerShell scripts loosely based on GitHub's
 [scripts-to-rule-them-all](https://github.com/github/scripts-to-rule-them-all).
 
