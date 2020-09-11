@@ -11,9 +11,9 @@ Write-Output "`n==> Running tests..."
 Write-Output "Tests started at $(Get-Date)"
 
 if ($PSBoundParameters.ContainsKey('Test')) {
-    & "$basePath\bin\checkScripts.ps1" $Test
+    & "$scriptPath\bin\checkScripts.ps1" $Test
 } else {
-    & "$basePath\bin\checkScripts.ps1"
+    & "$scriptPath\bin\checkScripts.ps1"
 }
 if ($LastExitCode) {
     Write-Output "checkScripts failed with exit code: $LastExitCode"
