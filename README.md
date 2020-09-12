@@ -52,6 +52,7 @@ This script currently allows for following package managers:
 If you have some [Chocolatey](https://chocolatey.org/) packages required then you can simply add a
 `chocolatey-packages` file at the top level of the project with a list of the packages and they
 will be installed and updated as required.
+Simply having the `chocolatey-packages` file means Chocolatey will be installed and updated.
 
 ### [winget](https://github.com/microsoft/winget-cli)
 
