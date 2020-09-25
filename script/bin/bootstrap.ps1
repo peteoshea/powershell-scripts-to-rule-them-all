@@ -1,4 +1,4 @@
-Write-Output "`n==> Running bootstrap script..."
+Write-Output "`n==> Bootstrapping dependencies..."
 
 # Setup path variables
 $binPath = Split-Path -Path $PSCommandPath -Parent
@@ -34,7 +34,7 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
             Install-ChocolateyPackage -Name $package
         }
     }
-    refreshenv
+    Update-SessionEnvironment
 }
 
 # Install any required winget packages
