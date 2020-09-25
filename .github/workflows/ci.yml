@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install analyser
+      - name: Install script analyser
         run: Install-Module -Name PSScriptAnalyzer -Force
         shell: pwsh
 
