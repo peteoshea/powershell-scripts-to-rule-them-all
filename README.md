@@ -39,6 +39,14 @@ A good pattern to support is having optional arguments that allow you to run spe
 Linting is also be considered a form of testing.
 These tend to run faster than tests, so put them towards the beginning so it fails faster if there's a linting problem.
 
+### [script/server][server]
+
+Used to start the application.
+
+For a web application, this might start up any extra processes that the application requires to run in addition to itself.
+
+[update][update]/[update.ps1][update.ps1] should be called ahead of any application booting to ensure that the application is up to date and can run appropriately.
+
 ## Installing Dependencies
 
 The [bootstrap][bootstrap] script, called from both [setup][setup] and [update][update] scripts, is used solely for fulfilling dependencies of the project.
@@ -65,6 +73,7 @@ installed and updated as required.
 
 [bootstrap]: script/bin/bootstrap.ps1
 [ci.yml]: .github/wokflows/ci.yml
+[server]: script/server.ps1
 [setup]: script/setup.ps1
 [test]: script/test.ps1
 [update]: script/update.ps1
