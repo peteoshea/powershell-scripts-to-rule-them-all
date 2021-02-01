@@ -42,10 +42,9 @@ These tend to run faster than tests, so put them towards the beginning so it fai
 ### [script/server][server]
 
 Used to start the application.
-
 For a web application, this might start up any extra processes that the application requires to run in addition to itself.
 
-[update][update]/[update.ps1][update.ps1] should be called ahead of any application booting to ensure that the application is up to date and can run appropriately.
+The [update][update] script is called ahead of any application booting to ensure that the application is up to date and can run appropriately.
 
 ## Installing Dependencies
 
