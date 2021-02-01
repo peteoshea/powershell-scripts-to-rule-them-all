@@ -11,8 +11,7 @@ Write-Output "`n==> Start running tests at $(Get-Date)"
 
 if ($PSBoundParameters.ContainsKey('Test')) {
   & "$scriptPath\bin\checkScripts.ps1" $Test
-}
-else {
+} else {
   & "$scriptPath\bin\checkScripts.ps1"
 }
 
