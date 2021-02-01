@@ -23,7 +23,7 @@ function Assert-Latest-PowerShell-Installed {
 
 # Check for Admininstrator permissions
 if (([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-  Write-Host "Script is being run as Administrator"
+  Write-Output "Script is being run as Administrator"
 } else {
   # Re-run the script using RunAs to elevate permissions
   Write-Warning "Script needs Administrator permissions so spawning elevated version"
@@ -45,7 +45,7 @@ function Install-ChocolateyPackage {
     [string]
     $Name
   )
-  Write-Host "===> Installing '$Name' using Chocolatey"
+  Write-Output "===> Installing '$Name' using Chocolatey"
   choco upgrade $Name --confirm
 }
 
