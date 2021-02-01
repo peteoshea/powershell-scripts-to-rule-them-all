@@ -20,10 +20,6 @@ jobs:
         run: Install-Module -Name PSScriptAnalyzer -Force
         shell: pwsh
 
-      - name: Install script analyser
-        run: Install-Module -Name PSScriptAnalyzer -Force
-        shell: pwsh
-
       - name: Run the test script
         run: script/test.ps1
         shell: pwsh
