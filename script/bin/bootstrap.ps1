@@ -1,5 +1,38 @@
 Write-Output "`n==> Bootstrapping dependencies..."
 
+function Install-WinGetPackage {
+  param (
+    [Parameter(Mandatory = $true)]
+    [string]
+    $Name
+  )
+  Write-Output "===> Installing '$Name' using winget"
+  # Enforce use of exact package name as name matching can cause issues if multiple matches found
+  winget install $Name --exact
+}
+
+function Assert-Latest-PowerShell-Installed {
+  $psCoreInstalled = $false
+  if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+    $psCoreInstalled = $true
+  }
+  if ($psCoreInstalled -eq $false) {
+    Install-WinGetPackage -Name Microsoft.PowerShell
+  }
+}
+
+# Check for Admininstrator permissions
+if (([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+  Write-Host "Script is being run as Administrator"
+} else {
+  # Re-run the script using RunAs to elevate permissions
+  Write-Warning "Script needs Administrator permissions so spawning elevated version"
+  Start-Sleep 1
+  Assert-Latest-PowerShell-Installed
+  Start-Process pwsh "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs -Wait
+  exit
+}
+
 # Setup path variables
 $binPath = Split-Path -Path $PSCommandPath -Parent
 $scriptPath = Split-Path -Path $binPath -Parent
@@ -7,8 +40,12 @@ $basePath = Split-Path -Path $scriptPath -Parent
 
 # There are multiple places to install a package so pull code into common function
 function Install-ChocolateyPackage {
-  param ([string]$Name)
-  Write-Output "===> Installing '$Name'"
+  param (
+    [Parameter(Mandatory = $true)]
+    [string]
+    $Name
+  )
+  Write-Host "===> Installing '$Name' using Chocolatey"
   choco upgrade $Name --confirm
 }
 
@@ -37,12 +74,6 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
 }
 
 # Install any required winget packages
-function Install-WinGetPackage {
-  param ([string]$Name)
-  Write-Output "===> Installing '$Name'"
-  winget install $Name --exact
-}
-
 $packagesFilePath = "$basePath\winget-packages"
 if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
   Write-Output "`n==> Installing winget packages..."
@@ -57,3 +88,6 @@ if (Test-Path -Path "$packagesFilePath" -PathType Leaf) {
     }
   }
 }
+
+# Wait for user response in case this was spawned as a separate process
+Read-Host -Prompt "`nPress <ENTER> to continue"
