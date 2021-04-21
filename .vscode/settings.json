@@ -3,6 +3,6 @@
   "editor.rulers": [100],
   "powershell.codeFormatting.preset": "OTBS",
   "workbench.colorCustomizations": {
-    "statusBar.background" : "#303030"
+    "statusBar.background": "#303030"
   }
 }
